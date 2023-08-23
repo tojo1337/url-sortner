@@ -23,8 +23,16 @@ public class RequestMapping {
         * */
         Alg al = new Alg(charset);
         String hashData = al.getMd5(url.getData());
-        map.put(hashData,url.getData());
-        url.setData(hashData);
+        if(!map.get(hashData).isEmpty()){
+            if(map.get(hashData).equals(url.getData())){
+                url.setData(hashData);
+            }else {
+                String newHashData = al.getBase62();
+                url.setData(newHashData);
+            }
+        }else {
+            url.setData(hashData);
+        }
         return url;
     }
     @GetMapping("/{data}")
