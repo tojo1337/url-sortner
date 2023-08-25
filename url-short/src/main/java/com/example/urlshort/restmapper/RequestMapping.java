@@ -23,16 +23,24 @@ public class RequestMapping {
         * */
         Alg al = new Alg(charset);
         String hashData = al.getMd5(url.getData());
-        if(!map.get(hashData).isEmpty()){
+        String value = url.getData();
+        if(!(map.get(hashData)==null)){
             if(map.get(hashData).equals(url.getData())){
                 url.setData(hashData);
             }else {
-                String newHashData = al.getBase62();
-                url.setData(newHashData);
+                while(true){
+                    String newHashData = al.getBase62();
+                    if(map.get(newHashData)==null){
+                        System.out.println("Colliding data : "+url.getData());
+                        url.setData(newHashData);
+                    }
+                }
             }
         }else {
             url.setData(hashData);
         }
+        String key = url.getData();
+        map.put(key,value);
         return url;
     }
     @GetMapping("/{data}")

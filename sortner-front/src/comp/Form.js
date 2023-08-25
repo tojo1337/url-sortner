@@ -23,8 +23,10 @@ export function Form(){
 					</div>
 				</div>
 			</form>
-			<div class="form-group">
-				<SortUrl url={url}/>
+			<div class="row">
+				<div class="col">
+					<SortUrl url={url} />
+				</div>
 			</div>
 		</div>
 	);
