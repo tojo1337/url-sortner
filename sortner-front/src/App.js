@@ -1,11 +1,10 @@
 //import logo from './logo.svg';
-//import './App.css';
-import {Form} from "./comp/Form";
+import {Template} from "./comp/Template";
 
 function App() {
   return (
-    <div class="container">
-      <Form />
+    <div>
+      <Template />
     </div>
   );
 }

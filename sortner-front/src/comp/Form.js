@@ -8,23 +8,23 @@ export function Form(){
 		const formData = new FormData(form);
 		const formJson = Object.fromEntries(formData.entries());
 		const urlData = formJson.urlInput;
-		console.log(urlData);
-		setUrl(urlData);
+		fetch("http://localhost:9000/sort",{method:"POST",headers:{"Content-Type":"application/json;charset=utf8"},body:JSON.stringify({data:urlData
+})}).then(res=>res.json()).then(json=>setUrl("http://localhost:3000/"+json.data));
 	}
 	return(
-		<div class="container">
+		<div className="container">
 			<form method="post" onSubmit={handler}>
-				<div class="row">
-					<div class="col">
-						<input type="text" name="urlInput" class="form-control" id="urlInput" aria-describedby="urlInput" placeholder="Enter url" />
+				<div className="row">
+					<div className="col">
+						<input type="text" name="urlInput" className="form-control" id="urlInput" aria-describedby="urlInput" placeholder="Enter url" />
 					</div>
-					<div class="col">
-						<button type="submit" class="btn btn-primary">Submit</button>
+					<div className="col">
+						<button type="submit" className="btn btn-primary">Submit</button>
 					</div>
 				</div>
 			</form>
-			<div class="row">
-				<div class="col">
+			<div className="row">
+				<div className="col">
 					<SortUrl url={url} />
 				</div>
 			</div>

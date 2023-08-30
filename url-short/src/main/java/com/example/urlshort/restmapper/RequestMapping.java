@@ -2,6 +2,7 @@ package com.example.urlshort.restmapper;
 
 import com.example.urlshort.core.Alg;
 import com.example.urlshort.data.PassData;
+import com.example.urlshort.data.RedirectData;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -14,6 +15,7 @@ public class RequestMapping {
                             '1','2','3','4','5','6','7','8','9','0'};
     private HashMap<String,String> map = new HashMap<>();
     @PostMapping("/sort")
+    @CrossOrigin(origins = "http://localhost:3000")
     public PassData sortUrl(@RequestBody PassData url){
         /*
         * Do some checking before returning back the value
@@ -43,12 +45,22 @@ public class RequestMapping {
         map.put(key,value);
         return url;
     }
+    /*
     @GetMapping("/{data}")
     public RedirectView redirectFunc(@PathVariable String data){
         RedirectView rev = new RedirectView();
         String url = map.get(data);
         rev.setUrl(url);
         return rev;
+    }
+    */
+    @GetMapping("/{data}")
+    //@CrossOrigin(origins = "http://localhost:3000")
+    public RedirectData redirectData(@PathVariable String data){
+        String url = map.get(data);
+        RedirectData red = new RedirectData();
+        red.setRedirectTo(url);
+        return red;
     }
     @GetMapping("/list")
     public String number(){
