@@ -1,12 +1,12 @@
 import {Form} from "./Form";
-import {Header} from "./Header";
 import {Nav} from "./Nav";
 export function Template(){
 	return(
-		<div>
-			<Header />
+		<div className="container-flex">
 			<Nav />
-			<Form />
+			<div className="container my-container">
+				<Form />
+			</div>
 		</div>
 	);
 }

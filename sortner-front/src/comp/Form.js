@@ -1,5 +1,8 @@
 import {useState} from "react";
-import {SortUrl} from "./SortUrl.js";
+import {SortUrl} from "./SortUrl";
+import {Header} from "./Header";
+import {InputForm} from "./InputForm";
+import "../style/Card.css";
 export function Form(){
 	const [url,setUrl] = useState("");
 	function handler(e){
@@ -8,23 +11,20 @@ export function Form(){
 		const formData = new FormData(form);
 		const formJson = Object.fromEntries(formData.entries());
 		const urlData = formJson.urlInput;
-		fetch("http://localhost:9000/sort",{method:"POST",headers:{"Content-Type":"application/json;charset=utf8"},body:JSON.stringify({data:urlData
-})}).then(res=>res.json()).then(json=>setUrl("http://localhost:3000/"+json.data));
+		fetch("http://localhost:9000/sort",
+			{method:"POST",headers:
+			{"Content-Type":"application/json;charset=utf8"},body:JSON.stringify({data:urlData})}
+		).then(res=>res.json())
+		.then(json=>setUrl("http://localhost:3000/"+json.data));
 	}
 	return(
 		<div className="container">
-			<form method="post" onSubmit={handler}>
-				<div className="row">
-					<div className="col">
-						<input type="text" name="urlInput" className="form-control" id="urlInput" aria-describedby="urlInput" placeholder="Enter url" />
-					</div>
-					<div className="col">
-						<button type="submit" className="btn btn-primary">Submit</button>
-					</div>
+			<div className="card my-card">
+				<div className="card-title">
+					<Header />
 				</div>
-			</form>
-			<div className="row">
-				<div className="col">
+				<div className="card-body">
+					<InputForm fn={handler} />
 					<SortUrl url={url} />
 				</div>
 			</div>
