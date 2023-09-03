@@ -1,17 +1,19 @@
 import {AiOutlineEnter} from "react-icons/ai"
 export function InputForm(props){
 	return(
-		<form method="post" onSubmit={props.fn}>
+		<div className="container">
 			<div className="row">
-				<div className="col">
-					<input type="text" name="urlInput" className="form-control" id="urlInput" aria-describedby="urlInput" placeholder="Enter url" />
-				</div>
-				<div className="col">
-					<button type="submit" className="btn btn-primary">
-						<AiOutlineEnter />
-					</button>
-				</div>
+				<form method="post" onSubmit={props.fn}>
+					<div className="col-sm-5">
+						<input type="text" name="urlInput" className="form-control" id="urlInput" aria-describedby="urlInput" placeholder="Enter url" />
+					</div>
+					<div className="col-sm">
+						<button type="submit" className="btn btn-primary">
+							<AiOutlineEnter />
+						</button>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
 	);
 }

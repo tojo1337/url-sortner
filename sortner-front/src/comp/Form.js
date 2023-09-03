@@ -4,7 +4,7 @@ import {Header} from "./Header";
 import {InputForm} from "./InputForm";
 import "../style/Card.css";
 export function Form(){
-	const [url,setUrl] = useState("");
+	const [url,setUrl] = useState("https://example.com");
 	function handler(e){
 		e.preventDefault();
 		const form = e.target;
@@ -19,13 +19,19 @@ export function Form(){
 	}
 	return(
 		<div className="container">
-			<div className="card my-card">
+			<div className="card">
 				<div className="card-title">
 					<Header />
 				</div>
 				<div className="card-body">
-					<InputForm fn={handler} />
-					<SortUrl url={url} />
+					<div className="container">
+						<div className="row">
+							<InputForm fn={handler} />
+						</div>
+						<div className="row">
+							<SortUrl url={url} />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
