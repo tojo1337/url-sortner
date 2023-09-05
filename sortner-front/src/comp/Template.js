@@ -4,7 +4,7 @@ export function Template(){
 	return(
 		<div className="container-flex">
 			<Nav />
-			<div className="container my-container">
+			<div className="container">
 				<Form />
 			</div>
 		</div>
