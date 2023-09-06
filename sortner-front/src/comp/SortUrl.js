@@ -1,8 +1,12 @@
+import copy from "copy-to-clipboard";
 import {BiCopy} from "react-icons/bi";
 export function SortUrl(props){
-	function copyHandler(){
+	function copyHandler(e){
+		e.preventDefault();
 		var data = document.getElementById("copyUrl").placeholder;
-		console.log(data);
+		copy(data);
+		console.log("Data has been copied");
+		console.log("Data : "+data);
 	}
 	return(
 		<div className="container">

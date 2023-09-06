@@ -19,7 +19,7 @@ export function Form(){
 	}
 	return(
 		<div className="container">
-			<div className="card">
+			<div className="card offset-3">
 				<div className="card-title">
 					<Header />
 				</div>
