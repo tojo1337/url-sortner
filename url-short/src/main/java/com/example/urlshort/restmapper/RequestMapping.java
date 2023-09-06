@@ -54,13 +54,17 @@ public class RequestMapping {
         return rev;
     }
     */
-    @GetMapping("/{data}")
-    //@CrossOrigin(origins = "http://localhost:3000")
-    public RedirectData redirectData(@PathVariable String data){
-        String url = map.get(data);
-        RedirectData red = new RedirectData();
-        red.setRedirectTo(url);
-        return red;
+    @PostMapping("/data")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public PassData fetchedData(@RequestBody PassData data){
+        PassData urlObj = new PassData();
+        String url = map.get(data.getData());
+        if(!url.isEmpty()){
+            urlObj.setData(url);
+        }else {
+            urlObj.setData("Not found");
+        }
+        return urlObj;
     }
     @GetMapping("/list")
     public String number(){
